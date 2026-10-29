@@ -1,0 +1,17 @@
+name: Rename farmer page to index
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mv orgavet-farmer-page.html index.html
+          git config user.name "orgavetmedicine"
+          git config user.email "orgavetmedicineltd@gmail.com"
+          git add -A
+          git commit -m "Rename orgavet-farmer-page.html to index.html" || exit 0
+          git push
